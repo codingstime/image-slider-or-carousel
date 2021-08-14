@@ -17,6 +17,10 @@
 }
 
 /* carousel */
+.carousel{
+   position: relative;
+}
+
 .carousel_inner{
    width: 100%;
    overflow: hidden;
@@ -38,12 +42,22 @@
 
 /* slide effect */
 .carousel_item__active,
+.carousel_item__pos_prev,
 .carousel_item__pos_next{
    display: block;
 }
 
+.carousel_item__pos_prev{
+   left: -100%;
+}
+
 .carousel_item__pos_next{
    left: 100%;
+}
+
+.carousel_item__prev{
+   transform: translateX(100%);
+   transition: transform .5s ease-in-out;
 }
 
 .carousel_item__next{
@@ -52,17 +66,20 @@
 }
 
 /* fade effect */
+.carousel__fade .carousel_item__pos_prev,
 .carousel__fade .carousel_item__pos_next{
    left: 0;
    opacity: 0;
 }
 
+.carousel__fade .carousel_item__prev,
 .carousel__fade .carousel_item__next{
    transform: none;
    opacity: 1;
    transition: opacity .5s ease-in-out;
 }
 
+.carousel__fade .carousel_item__active.carousel_item__prev,
 .carousel__fade .carousel_item__active.carousel_item__next{
    opacity: 0;
 }
@@ -82,7 +99,7 @@
    justify-content: center;
    width: 100%;
    height: 100%;
-   padding: 3rem 2.5rem;
+   padding: 3rem 4rem;
    text-align: center;
    color: #fff;
    z-index: 1;
@@ -96,4 +113,59 @@
 .carousel_description{
    margin-top: .75rem;
    line-height: 150%;
+}
+
+.carousel_indicator{
+   position: absolute;
+   bottom: 1rem;
+   left: 50%;
+   transform: translateX(-50%);
+   display: flex;
+   flex-direction: row;
+   gap: .5rem;
+   z-index: 1;
+}
+
+.carousel_dot{
+   display: block;
+   padding: .25rem;
+   background-color: rgba(255, 255, 255, .25);
+   border: none;
+   border-radius: 50%;
+   cursor: pointer;
+   transition: background-color .5s ease-in-out;
+}
+
+.carousel_dot__active{
+   background-color: lightskyblue;
+   cursor: default;
+   pointer-events: none;
+}
+
+.carousel_control{
+   position: absolute;
+   top: 0;
+   left: 0;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   width: 100%;
+   height: 100%;
+}
+
+.carousel_button{
+   display: block;
+   padding-inline: 1rem;
+   font-family: "Raleway", sans-serif;
+   font-size: 1.375rem;
+   background-color: transparent;
+   color: rgba(255, 255, 255, .25);
+   border: none;
+   cursor: pointer;
+   transition: color .25s;
+   z-index: 1;
+}
+
+.carousel_button:hover{
+   color: rgba(135, 206, 250, .75);
 }
